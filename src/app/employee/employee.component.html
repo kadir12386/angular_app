@@ -1,0 +1,130 @@
+<div class="row">
+  <div class="col s12">
+    <div class="card">
+      <div class="card-content">
+        <div class="row">
+          <div class="col s5">
+            <!-- <form #employeeForm="ngForm" (ngSubmit)="onSubmit(employeeForm)"> -->
+            <form #employeeForm="ngForm" (ngSubmit)="onSubmit(employeeForm)">
+              <input
+                type="hidden"
+                name="_id"
+                #_id="ngModel"
+                [(ngModel)]="employeeService.selectedEmployee._id"
+              />
+              <div class="row">
+                <div class="input-field col s12">
+                  <input
+                    type="text"
+                    name="brand"
+                    #name="ngModel"
+                    [(ngModel)]="employeeService.selectedEmployee.brand"
+                    required
+                  />
+                  <label
+                    >Brand Name :
+                    <label class="red-text">*</label>
+                  </label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input
+                    type="text"
+                    name="phone_name"
+                    #name="ngModel"
+                    [(ngModel)]="employeeService.selectedEmployee.phone_name"
+                  />
+                  <label>phone_name :</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input
+                    type="text"
+                    name="phone_img_url"
+                    #name="ngModel"
+                    [(ngModel)]="employeeService.selectedEmployee.phone_img_url"
+                  />
+                  <label>phone_img_url :</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input
+                    type="text"
+                    name="phone_color"
+                    #name="ngModel"
+                    [(ngModel)]="employeeService.selectedEmployee.phone_color"
+                  />
+                  <label>phone_color :</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input
+                    type="text"
+                    name="phone_price"
+                    #name="ngModel"
+                    [(ngModel)]="employeeService.selectedEmployee.phone_price"
+                  />
+                  <label>phone_price :</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <button
+                    class="btn btn-custom right"
+                    type="button"
+                    (click)="resetForm(employeeForm)"
+                  >
+                    Reset
+                  </button>
+                  <button class="btn btn-custom right" type="submit">
+                    <!-- [disabled]="!employeeForm.valid" -->
+                    Submit
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col s7">
+            <table class="responsive-table highlight text-dark">
+              <thead>
+                <tr>
+                  <th>Brand</th>
+                  <th>phone_name</th>
+                  <th>phone_img_url</th>
+                  <th>phone_color</th>
+                  <th>phone_price</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tr *ngFor="let emp of employeeService.employees">
+                <td>{{ emp.brand }}</td>
+                <td>{{ emp.phone_name }}</td>
+                <td>
+                  <img src="{{ emp.phone_img_url }}" alt="" width="100px" />
+                </td>
+                <td>{{ emp.phone_color }}</td>
+                <td>{{ emp.phone_price }}</td>
+                <td>
+                  <a class="action-btn" (click)="onEdit(emp)">
+                    <i class="fa fa-pencil-square" aria-hidden="true"></i>
+                  </a>
+
+                  <a
+                    class="action-btn"
+                    (click)="onDelete(emp._id, employeeForm)"
+                  >
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                  </a>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
